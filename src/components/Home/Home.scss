@@ -1,0 +1,60 @@
+.home {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  picture{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+  }
+   .visual-pc,
+  .visual-mobile {
+   /*  width: 90%; */
+    margin: 0 auto;      // 반응형 너비
+   /*  height: 100vh; */     // 원하는 고정 높이 (px, vh 등 가능)
+    object-fit: cover; // 비율 맞춰 채우기
+    display: block;
+  }
+    .visual-pc {
+    display: block;
+  }
+  .visual-mobile {
+    display: none;
+  }
+  @media (max-width: 768px) {
+    .visual-pc {
+      display: none;
+    }
+    .visual-mobile {
+      display: block;
+    }
+  }
+
+
+  .main-visual {
+    width: 100%;
+    height: auto;       // ✅ 세로 비율 유지
+   /*  max-height: 100%;  */  // ✅ 부모 박스 안 넘지 않게
+    object-fit: contain;
+  }
+
+  
+  img{
+    width: 90%;
+    display: block;
+    border: 7px solid #fff;
+    border-radius: 15px;
+   /*  transition:  width 0.3s ease; */
+    @media screen and (max-width: 1700px) {
+      width: 100%;
+    }
+    @media screen and (max-width: 1500px) {
+      width: 120%;
+    }
+   
+  }
+
+}

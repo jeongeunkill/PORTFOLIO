@@ -1,0 +1,232 @@
+/* ===========================
+   Graphic.scss (vertical coverflow)
+   =========================== */
+
+.graphic {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* 외부 스크롤 차단 */
+}
+
+.graphic-viewport {
+  width: 100%;
+  height: var(--home-visual-height, 800px); /* Home과 동일 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+  top: 40px;
+  box-sizing: border-box;
+  padding-top: clamp(112px, 2vh, 24px);
+}
+
+.graphic-title {
+  font-size: clamp(28px, 3.2vw, 60px);
+  font-weight: 800;
+  color: #274067;
+  margin: clamp(6px, 1vh, 14px) 0 clamp(14px, 2vh, 24px);
+  letter-spacing: 2px;
+  text-align: center;
+  line-height: 1.1;
+  white-space: nowrap; /* 높이 흔들림 방지 */
+  margin-top: clamp(10px, 6vh, 20px);   /* ✅ nav 아래로 내림 */
+  margin-bottom: clamp(20px, 4vh, 40px);
+}
+
+/* 본문 보드 */
+.graphic-board {
+      /* width: min(1440px, 95%); */
+    height: calc(100% - clamp(80px, 12vh, 120px));
+    display: grid
+;
+    grid-template-columns: 0.95fr 1.6fr;
+    gap: clamp(18px, 2vw, 36px);
+    background: transparent;
+    /* border-radius: 24px; */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    /* padding: clamp(18px, 2vw, 34px); */
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* ────────────────────────── */
+/* LEFT PANEL (레퍼런스 매칭) */
+/* ────────────────────────── */
+
+.g-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;         /* 가운데 정렬 */
+  text-align: center;
+  gap: 18px;
+  padding-right: clamp(8px, 1vw, 14px);
+  border-right: 1px solid rgba(28, 43, 90, 0.1);
+
+  @media (max-width: 900px) {
+    border-right: 0;
+    border-bottom: 1px solid rgba(28, 43, 90, 0.1);
+    padding-bottom: 16px;
+  }
+}
+
+/* 제목 (포스터 등) */
+.g-left__title {
+  font-weight: 800;
+  font-size: clamp(22px, 2.1vw, 30px);
+  letter-spacing: 1px;
+  color: #274067;
+  margin: 4px 0 6px;
+}
+
+/* 기여도 박스 */
+.g-meter {
+  width: 230px;               /* 레퍼런스 폭 */
+  border: 2px solid #27406733;
+  border-radius: 6px;
+  padding: 10px 12px 12px;
+  background: rgba(255,255,255,0.6);
+  box-sizing: border-box;
+}
+
+.g-meter__dots {
+  display: flex;
+  justify-content: space-between;  /* 점들이 균등 간격 */
+  align-items: center;
+  list-style: none;
+  margin: 2px 0 6px;
+  padding: 0;
+}
+
+.g-meter__dots li {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #b6c3dc;             /* 비활성 점 */
+  box-shadow: inset 0 0 0 3px rgba(255,255,255,.95);
+}
+.g-meter__dots li.active {
+  background: #274067;             /* 활성 점 */
+}
+
+.g-meter__caption {
+  display: block;
+  font-size: 13px;
+  color: #274067;
+}
+
+/* 섹션 라벨 (PROGRAM / [작 품]) */
+.g-left__label {
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #274067;
+  opacity: .95;
+  &.-program { margin-top: 8px; font-size: 18px; }
+  &.-works   { margin-top: 10px; font-size: 18px; }
+}
+
+/* 프로그램 아이콘 (기본 가로, 필요 시 column) */
+.g-left__icons {
+  display: flex;
+  gap: 12px;
+
+  &.column {                 /* stackPrograms:true */
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+  }
+
+  img {
+    width: 48px;
+    height: 48px;
+    display: block;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.08));
+  }
+}
+
+/* 작품명 이미지 (여러 장 세로 스택) */
+.g-left__works {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.g-left__workname {
+  width: 220px;              /* 레퍼런스 크기 */
+  max-width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,0.08));
+}
+
+/* 모바일 살짝 축소 */
+@media (max-width: 600px) {
+  .g-meter       { width: 210px; }
+  .g-left__icons img { width: 42px; height: 42px; }
+  .g-left__workname  { width: 200px; }
+}
+
+/* ============= RIGHT : Vertical Coverflow ============= */
+.g-right { position: relative; overflow: hidden; }
+
+.g-swiper.g-swiper--coverflow {
+  width: 100%;
+  height: 100%;
+  padding-block: 16px; /* 32 → 16 */
+}
+
+/* coverflow 슬라이드 크기/투명도 */
+.g-swiper--coverflow .swiper-slide {
+  transition: transform .35s ease, opacity .35s ease, filter .35s ease;
+  opacity: .45;
+  transform: scale(0.88); /* 0.85~0.9 사이 취향대로 */
+}
+.g-swiper--coverflow .swiper-slide-active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 2;
+}
+
+/* 카드 프레임 */
+.g-card-slide {
+  width: min(94%, 820px);
+  height: 100%;                 /* 세로 전체 유지(바깥 높이 증가 X) */
+  border-radius: 8px;
+  overflow: hidden;
+  /* background: #fff;  */            /* 흰 배경으로 레터박스 자연스럽게 */
+  box-shadow: 0 12px 28px rgba(0,0,0,.12);
+
+  /* 이미지 가운데 정렬 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.g-card-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;           /* cover → contain */
+  display: block;
+}
+
+/* Swiper 기본 점(필요 시 보이게) — coverflow에선 보통 숨기지만 남겨둠 */
+.swiper-pagination-bullet { background: #274067 !important; opacity: .3 !important; }
+.swiper-pagination-bullet-active { opacity: 1 !important; }
+
+/* ============= Responsive ============= */
+@media (max-width: 1200px) {
+  .graphic-board { grid-template-columns: 1fr 1.4fr; }
+}
+@media (max-width: 900px) {
+  .graphic-board { grid-template-columns: 1fr; gap: 18px; }
+  .g-left {
+    border-right: 0; border-bottom: 1px solid rgba(28,43,90,.1);
+    padding-bottom: 14px; align-items: center; text-align: center;
+  }
+  .g-left__icons.column { align-items: center; }
+  .g-left__workname { width: 200px; }
+}
+@media (max-width: 600px) {
+  .graphic-viewport { height: var(--home-visual-height, 680px); }
+  .g-left__icons img { width: 36px; height: 36px; }
+  .g-left__workname { width: 180px; }
+}

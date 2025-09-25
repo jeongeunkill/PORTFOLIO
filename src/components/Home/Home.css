@@ -1,0 +1,64 @@
+.home {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.home picture {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.home .visual-pc,
+.home .visual-mobile {
+  /*  width: 90%; */
+  margin: 0 auto;
+  /*  height: 100vh; */
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: block;
+}
+.home .visual-pc {
+  display: block;
+}
+.home .visual-mobile {
+  display: none;
+}
+@media (max-width: 768px) {
+  .home .visual-pc {
+    display: none;
+  }
+  .home .visual-mobile {
+    display: block;
+  }
+}
+.home .portfolio-label {
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  font-size: 20px;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: 2px;
+}
+.home .main-visual {
+  width: 100%;
+  height: auto;
+  /*  max-height: 100%;  */
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.home .name-label {
+  position: absolute;
+  right: 5%;
+  bottom: 50%;
+  transform: translateY(50%);
+  font-size: 20px;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: 2px;
+}
+.home img {
+  width: 100%;
+}/*# sourceMappingURL=Home.css.map */

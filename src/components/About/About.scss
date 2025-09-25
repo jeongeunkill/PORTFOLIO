@@ -1,0 +1,101 @@
+.about {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+
+  // ✅ Home 이미지의 실제 렌더링 높이(px)로 정확히 맞춤
+  .about-viewport {
+    position: relative;
+    width: 100%;
+    height: var(--home-visual-height, 800px); // fallback 800px
+    box-sizing: border-box;
+    overflow: hidden; // 뷰포트 밖은 가림 (요구사항)
+    display: flex;
+    justify-content: center; // Home과 같은 가로 중앙
+    align-items: flex-start; // 세로는 상단 기준 (이미지 top 정렬)
+  }
+
+  .about-scroller {
+    // 내부 스크롤 컨테이너
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;     // ✅ 세로 스크롤바 생성
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    display: flex;
+    justify-content: center; // 이미지 가로 중앙
+    align-items: flex-start; // 이미지 상단 정렬
+  }
+
+  .about-visual {
+    // Home의 img 규칙 복제 (크기/테두리/반응형)
+    width: 90%;
+    max-width: 100%;
+    display: block;
+    border: 7px solid #fff;
+    border-radius: 15px;
+    height: auto;        // 원본 비율 유지
+    object-fit: contain; // 스크롤로 전체를 볼 것이므로 contain이 자연스럽습니다.
+    pointer-events: auto;
+
+    @media screen and (max-width: 1700px) {
+      width: 100%;
+    }
+  }
+
+  /* (선택) 깔끔한 스크롤바 스타일 */
+  .about-scroller {
+    scrollbar-width: thin;
+    scrollbar-color: #ffffff transparent;
+  }
+  .about-scroller::-webkit-scrollbar {
+    width: 8px;
+  }
+  .about-scroller::-webkit-scrollbar-thumb {
+    background: #bbb;
+    border-radius: 8px;
+  }
+  .about-scroller::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  /* =========================
+     📱 반응형
+     ========================= */
+
+  /* <= 800px : 태블릿/작은 노트북 */
+  @media screen and (max-width: 800px) {
+    .about-viewport {
+      height: var(--home-visual-height, 700px); // 살짝 낮춰 자연스러운 비율
+    }
+    .about-visual {
+      width: 100%;          // 좌우 꽉 채움
+      border-width: 6px;    // 보더 살짝 축소
+      border-radius: 12px;
+    }
+    .about-scroller::-webkit-scrollbar {
+      width: 6px;           // 스크롤바 더 슬림
+    }
+  }
+
+  /* <= 480px : 스마트폰 */
+  @media screen and (max-width: 480px) {
+    .about-viewport {
+      height: var(--home-visual-height, 620px); // 모바일에서 너무 길어 보이지 않게 보정
+    }
+    .about-visual {
+      width: 100%;
+      border-width: 4px;    // 모바일 보더 최소화
+      border-radius: 10px;
+      margin: 60px 0 0 0;
+    }
+    .about-scroller {
+      padding: 0 6px;       // 양옆 살짝 여백(보더와 배경 겹침 방지)
+    }
+    .about-scroller::-webkit-scrollbar {
+      width: 4px;
+    }
+    
+  }
+}
