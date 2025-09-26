@@ -1,28 +1,34 @@
 import React, { useEffect, useRef } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Home from "./components/Home/Home";
 import About from "./components/About/About";
 import Web from "./components/Web/Web";
 import Graphic from "./components/Graphic/Graphic";
 import Header from "./components/Header/Header";
 
-import bgVideo from "./video/bg.mp4";   // ✅ src에 있는 mp4 import
-// import posterImg from "./assets/video/poster.jpg"; // 선택: 첫 프레임 대신 표시할 이미지
+import bgVideo1 from "./video/bg.mp4";   // ✅ Home / About
+import bgVideo2 from "./video/bg2.mp4";  // ✅ Web / Graphic
 
 import "./App.scss";
 
 function App() {
   const videoRef = useRef(null);
+  const location = useLocation();
+
+  // 현재 경로별 비디오 선택
+  const isWebOrGraphic =
+    location.pathname === "/web" || location.pathname === "/graphic";
+
+  const getVideoSrc = () => (isWebOrGraphic ? bgVideo2 : bgVideo1);
 
   useEffect(() => {
-    // iOS/모바일 브라우저에서 자동재생 보조
     const v = videoRef.current;
     if (!v) return;
-    v.muted = true; // iOS 자동재생 필수
+    v.muted = true;
     const tryPlay = () => v.play().catch(() => {});
     if (v.readyState >= 2) tryPlay();
     else v.addEventListener("loadeddata", tryPlay, { once: true });
-  }, []);
+  }, [location]);
 
   return (
     <div className="app">
@@ -30,25 +36,21 @@ function App() {
       <div className="bg-video" aria-hidden="true">
         <video
           ref={videoRef}
+          key={getVideoSrc()} // 경로 바뀌면 비디오 새로고침
           className="bg-video__media"
           autoPlay
           muted
           loop
           playsInline
-          preload="metadata"
-          // poster={posterImg}
         >
-          <source src={bgVideo} type="video/mp4" />
-          {/* 필요하면 WebM 추가
-          <source src={bgVideoWebm} type="video/webm" />
-          */}
+          <source src={getVideoSrc()} type="video/mp4" />
         </video>
       </div>
 
-      {/* ✅ 오버레이 */}
-      <div className="overlay"></div>
+      {/* ✅ 오버레이: Web/Graphic 에서는 숨김 */}
+      {!isWebOrGraphic && <div className="overlay"></div>}
 
-      {/* 중앙 네모 박스 */}
+      {/* 중앙 박스 */}
       <div className="content-box">
         <Header />
         <div className="content-inner">

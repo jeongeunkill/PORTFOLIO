@@ -61,10 +61,11 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 18px;
+  gap: 15px;
 
   padding-right: clamp(8px, 1vw, 14px);
   border-right: 3px solid rgba(28, 43, 90, 0.1);
+
 
   /* ✅ 보더를 안쪽으로 6px 정도 끌어오기 */
   margin-right: 53px;
@@ -155,18 +156,14 @@
   gap: 10px;
 }
 .g-left__workname {
-  width: clamp(100px, 16vw, 220px); /* ◆ 폭만 축소 */
+  width: clamp(90px, 16vw, 190px);
   max-width: 100%;
+  
   height: auto;
   display: block;
   /* filter: drop-shadow(0 6px 14px rgba(0,0,0,0.08)); */
 }
-img.g-left__img.img-n01 {
-    width: 80%;
-    max-width: 80%;
-    margin: 0 auto;
-    flex: 0 0 auto; // flex 수축 방지
-  }
+
 
 /* 모바일 살짝 축소 */
 @media (max-width: 600px) {
@@ -237,25 +234,68 @@ img.g-left__img.img-n01 {
     width: 100%;      /* 칼럼 내부 100% */
     max-width: 720px; /* 카드 최대폭 축소 */
   }
-  .g-swiper.g-swiper--coverflow { padding-block: 129px; }
+  /* .g-swiper.g-swiper--coverflow { padding-block: 115px; } */
 }
 
+/* 900px 이하: 1컬럼 레이아웃 + 왼쪽 패널을 3열 그리드로 재배치 */
 @media (max-width: 900px) {
-  /* ◆ 여기서만 1컬럼 전환 */
-  .graphic-board { grid-template-columns: 1fr; gap: 18px; }
-  .g-left {
-    border-right: 0; border-bottom: 1px solid rgba(28,43,90,.1);
-    padding-bottom: 14px; align-items: center; text-align: center;
+  .graphic-board {
+    grid-template-columns: 1fr;   /* 보드는 1열 */
+    gap: 18px;
+    width: min(100%, 92vw);
   }
-  .g-left__icons.column { align-items: center; }
-  .g-left__workname { width: 200px; }
 
-  /* ◆ 스와이퍼 형태 유지 + 크기만 축소 (칼럼 폭 내부) */
+  /* 왼쪽 패널: 3열 그리드(같이 줄어듦) */
+  .g-left {
+    border-right: 0;
+    border-bottom: 3px solid rgba(28,43,90,.1);
+    padding-bottom: 21px;
+
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr)); /* ✅ 3열 고정 */
+    column-gap: clamp(12px, 2vw, 24px);
+    row-gap: clamp(8px, 1.6vw, 16px);
+    justify-items: center;
+    align-items: start;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+  }
+
+  /* 1열: 포스터 + 기여도 */
+  .g-left__title {
+    grid-column: 1; grid-row: 1; margin: 0;
+    font-size: clamp(28px, 4.2vw, 36px); /* 같이 줄어드는 제목 */
+  }
+  .g-meter {
+    grid-column: 1; grid-row: 2;
+    width: min(92%, 220px);  /* ✅ 칼럼 안 비율로 줄어듦 */
+    height: auto;
+  }
+
+  /* 2열: PROGRAM + 아이콘 */
+  .g-left__label.-program { grid-column: 2; grid-row: 1; margin: 0; }
+  .g-left__icons          { grid-column: 2; grid-row: 2; }
+  .g-left__icons img {
+    width: clamp(28px, 7vw, 40px);    /* 세 칼럼과 같은 비율로 축소 */
+    height: clamp(28px, 7vw, 40px);
+  }
+
+  /* 3열: [작 품] + 네임 이미지 */
+  .g-left__label.-works { grid-column: 3; grid-row: 1; margin: 0; }
+  .g-left__works        { grid-column: 3; grid-row: 2; }
+  .g-left__workname     { width: min(92%, 200px); } /* ✅ 칼럼 폭 기준 */
+
+  /* 스와이퍼는 그 아래 전체폭 */
+  .g-right { grid-column: 1 / -1; }
+
+  /* 스와이퍼는 형태 유지 + 크기만 축소 */
   .g-card-slide { width: 100%; max-width: 700px; }
   .g-swiper--coverflow { padding-block: 12px; }
-  .g-swiper--coverflow .swiper-slide       { transform: scale(0.9);  opacity: .55; }
-  .g-swiper--coverflow .swiper-slide-active{ transform: scale(1);    opacity: 1;   }
+  .g-swiper--coverflow .swiper-slide        { transform: scale(0.9);  opacity: .55; }
+  .g-swiper--coverflow .swiper-slide-active { transform: scale(1);    opacity: 1;   }
 }
+
 
 @media (max-width: 600px) {
   .graphic-viewport { height: var(--home-visual-height, 680px); }
@@ -263,4 +303,103 @@ img.g-left__img.img-n01 {
   .g-left__workname { width: 180px; }
   .g-card-slide { width: 100%; max-width: 640px; }
   .g-swiper--coverflow{ padding-block: 10px; }
+  .g-meter__dots li {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+  }
+  .g-meter__caption {
+    display: block;
+    font-size: 14px;
+    color: #274067;
+  }
 }
+
+.graphic .graphic-title {
+  /* 최대값(마지막 인자) 크게, vw도 키움 */
+  /* font-size: clamp(40px, 6vw, 110px);
+  line-height: 1.05; */
+}
+
+/* 데스크톱에서 더 크게 보이고 싶으면 선택(추가 가능) */
+/* @media (min-width: 1200px) {
+  .graphic .graphic-title { font-size: 50px; }
+} */
+
+/* 태블릿/모바일에서 너무 커지지 않게 캡 */
+@media (max-width: 900px) {
+  .graphic .graphic-title { font-size: clamp(34px, 5.2vw, 72px); }
+}
+
+/* 480px 이하: 레이아웃은 900px 기준 유지 + 크기/여백만 더 축소 */
+@media (max-width: 480px) {
+  /* 1) 보드가 화면 밖으로 나가지 않게 하고 가운데 정렬 */
+  .graphic {
+    overflow-x: hidden;               /* 혹시 모를 가로 스크롤 차단 */
+  }
+  .graphic-board {
+    width: 94vw;                      /* 고정 최소폭 제거 */
+    margin-inline: auto;              /* 가운데 정렬 */
+    gap: 23px;                        /* 여백 축소 */
+  }
+
+  /* 왼쪽 패널도 같이 더 줄이기 */
+  .g-left {
+    column-gap: 0px;
+    row-gap: 8px;
+    padding-bottom: 18px;
+  }
+  .g-left__works {
+  display: flex;
+  flex-direction: column;
+  align-items: center;    /* ✅ 가운데 정렬 */
+  gap: 8px;
+}
+  .g-left__title {
+    font-size: clamp(18px, 4.8vw, 24px);
+    margin: 0;
+  }
+  .g-meter {
+    width: clamp(120px, 52%, 160px);
+    padding: 6px 8px;
+  }
+  .g-meter__dots li { width: 15px; height: 15px; }
+  .g-meter__caption { font-size: 14px; }
+  .g-left__label { font-size: 16px; letter-spacing: 1px; }
+  .g-left__label.-program {
+  font-size: clamp(16px, 2.6vw, 22px);  /* 너무 크지 않게 */
+  margin-top: 12px;
+  text-align: center;
+}
+  .g-left__label.-works {
+  font-size: clamp(16px, 2.6vw, 22px);  /* 너무 크지 않게 */
+  margin-top: 12px;
+  text-align: center;
+}
+  .g-left__icons img {
+    width: clamp(20px, 10vw, 28px);
+    height: clamp(20px, 10vw, 28px);
+  }
+  .g-left__workname {
+  width: clamp(120px, 60%, 180px); /* 반응형 줄이기 */
+  margin: 0 auto;                  /* 수평 중앙 보정 */
+  display: block;
+}
+
+  /* 2) 수직 커버플로우 위/아래 갭 줄이기 */
+  .g-swiper.g-swiper--coverflow {
+    padding-block: 10px;               /* 상하 프리뷰 여백 최소화 */
+  }
+  .g-card-slide {
+    max-width: 520px;                  /* 카드 자체도 더 작게 */
+  }
+  .g-swiper--coverflow .swiper-slide {
+    transform: scale(0.94);            /* 이웃 슬라이드 확대 → 갭 시각적으로 축소 */
+  }
+  .g-swiper--coverflow .swiper-slide-active {
+    transform: scale(1);
+  }
+}
+
+
+

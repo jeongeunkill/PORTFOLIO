@@ -148,7 +148,7 @@ export default function Graphic() {
                 modifier: 1,
                 slideShadows: false,
               }}
-              autoplay={{ delay: 10000, disableOnInteraction: false }}
+              autoplay={{ delay: 3000, disableOnInteraction: false }}
               onSlideChange={(sw) => setActive(sw.realIndex)}
               breakpoints={{
                 // ≥ 1440
@@ -187,7 +187,6 @@ export default function Graphic() {
                 <SwiperSlide key={idx}>
                   <div className="g-card-slide">
                     <img src={s.right} alt={`${s.section} ${idx + 1}`} />
-                    
                   </div>
                 </SwiperSlide>
               ))}
