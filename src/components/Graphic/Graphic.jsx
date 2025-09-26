@@ -129,39 +129,68 @@ export default function Graphic() {
                 ))}
             </div>
             </aside>
+            
 
           {/* RIGHT - Vertical Coverflow */}
           <div className="g-right">
             <Swiper
-            className="g-swiper g-swiper--coverflow"
-            modules={[EffectCoverflow, Autoplay]}
-            direction="vertical"
-            effect="coverflow"
-            centeredSlides
-            slidesPerView={1.1}      // ↓ 프리뷰가 메인에 더 붙도록 (1.3 → 1.1)
-            spaceBetween={8}         // ↓ 슬라이드 간격 좁힘 (20 → 8)
-            loop
-            speed={800}
-            coverflowEffect={{
+              className="g-swiper g-swiper--coverflow"
+              modules={[EffectCoverflow, Autoplay]}
+              direction="vertical"
+              effect="coverflow"
+              centeredSlides
+              loop
+              speed={800}
+              coverflowEffect={{
                 rotate: 0,
                 stretch: 0,
-                depth: 160,            // ↓ 원근감 살짝 줄여서 겹침 느낌 강화 (220/260 → 160)
+                depth: 200,          // 기본
                 modifier: 1,
                 slideShadows: false,
-            }}
-            autoplay={{
-                delay: 10000,
-                disableOnInteraction: false,
-            }}
-            onSlideChange={(sw) => setActive(sw.realIndex)}
+              }}
+              autoplay={{ delay: 10000, disableOnInteraction: false }}
+              onSlideChange={(sw) => setActive(sw.realIndex)}
+              breakpoints={{
+                // ≥ 1440
+                1440: {
+                  slidesPerView: 1.35,
+                  spaceBetween: 18,
+                  coverflowEffect: { depth: 220 },
+                },
+                // 1200 ~ 1439
+                1200: {
+                  slidesPerView: 1.28,
+                  spaceBetween: 16,
+                  coverflowEffect: { depth: 200 },
+                },
+                // 900 ~ 1199  (여기까지는 2컬럼 유지)
+                900: {
+                  slidesPerView: 1.22,
+                  spaceBetween: 14,
+                  coverflowEffect: { depth: 180 },
+                },
+                // 600 ~ 899  (이하 1컬럼이지만 형태 유지)
+                600: {
+                  slidesPerView: 1.18,
+                  spaceBetween: 12,
+                  coverflowEffect: { depth: 160 },
+                },
+                // < 600
+                0: {
+                  slidesPerView: 1.14,
+                  spaceBetween: 10,
+                  coverflowEffect: { depth: 140 },
+                },
+              }}
             >
-            {slides.map((s, idx) => (
+              {slides.map((s, idx) => (
                 <SwiperSlide key={idx}>
-                <div className="g-card-slide">
+                  <div className="g-card-slide">
                     <img src={s.right} alt={`${s.section} ${idx + 1}`} />
-                </div>
+                    
+                  </div>
                 </SwiperSlide>
-            ))}
+              ))}
             </Swiper>
           </div>
         </div>

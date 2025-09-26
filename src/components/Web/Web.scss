@@ -239,4 +239,10 @@ html, body, #root {
     -webkit-line-clamp: 4; 
     max-width: 52ch;
   }
+  .web-links img {
+  width: 28px;
+  height: 28px;
+  display: block;
+  transition: transform .2s ease, filter .2s ease;
+}
 }
