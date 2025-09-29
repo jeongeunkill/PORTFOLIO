@@ -33,7 +33,7 @@ const slides = [
     desc:
       "React와 SCSS를 사용해 Fenty Beauty 공식 메인 페이지를 클론 코딩한 프로젝트입니다. Swiper.js를 활용해 자동 재생 및 네비게이션이 가능한 배너 슬라이드를 구현했으며, 컴포넌트 모듈화로 유지보수성을 높였습니다. 다양한 해상도에서도 최적화된 반응형 웹으로 구현했습니다.",
     github: "https://github.com/jeongeunkill/FENTY.git",
-    notion: "https://www.notion.so/2780224363c0805abd7df973b199b58a",
+    notion: "https://www.notion.so/FENDY-27d0224363c080398296f21614cad18c",
   },
   {
     thumb: w02,
@@ -44,18 +44,18 @@ const slides = [
     desc:
       "React 기반의 팀 프로젝트로, Axios로 외부 API를 연동해 실시간 콘텐츠를 출력했습니다. 재사용 가능한 컴포넌트 구조를 적용하고 Swiper.js로 자동 재생·네비게이션·루프 슬라이드를 구현했습니다.",
     github: "https://github.com/jeongeunkill/MOODIC.git",
-    notion: "https://www.notion.so/2780224363c0805abd7df973b199b58a",
+    notion: "https://www.notion.so/MOODIC-PROJECT-27d0224363c08098a0bed1382f9d5976",
   },
   {
     thumb: w03,
     liveUrl: "https://jeongeunkill.github.io/movie-app/",
-    date: "May 2025",
+    date: "July 2025",
     title: "TMDB",
     tags: ["REACT", "SCSS", "JSX"],
     desc:
       "React를 사용하여 영화 검색, 상세페이지 등의 주요 기능을 구현 TMDB 영화사이트 웹페이지를 구현 하였습니다. 이 프로젝트에서는 영화 검색, 상세페이지 등의 주요 기능을 구현하였으며, 메인 페이지 내 FreshBox 및 Location 페이지는 Swiper API를 활용하여 요소 전환 효과를 적용했습니다. 각 페이지에서 직관적인 UI와 효율적인 데이터 처리를 구현하여 사용자 경험을 최적화 했습니다.",
     github: "https://github.com/jeongeunkill/movie-app.git",
-    notion: "https://www.notion.so/2780224363c0805abd7df973b199b58a",
+    notion: "https://www.notion.so/TMDB-27d0224363c080c18797c8e2c8bf307e",
   },
   {
     thumb: w04,
@@ -66,7 +66,7 @@ const slides = [
     desc:
       "HTML, CSS, JavaScript를 사용해 어뮤즈(A.MUSE) 공식 메인 페이지를 클론 코딩한 프로젝트입니다. Swiper.js를 적용하여 자동 재생과 네비게이션이 가능한 배너 슬라이드를 구현하였으며, 전체 페이지의 레이아웃과 기능을 원본 사이트와 동일하게 반응형 사이트로 재현했습니다.",
     github: "https://github.com/jeongeunkill/AMUSE.git",
-    notion: "https://www.notion.so/2780224363c0805abd7df973b199b58a",
+    notion: "https://www.notion.so/AMUSE-27d0224363c080d9a09fe5f19cd3f6b0",
   },
   {
     thumb: w05,
@@ -77,7 +77,7 @@ const slides = [
     desc:
       "HTML, CSS, JavaScript를 사용해 탬버린즈(Tamburins) 공식 메인 페이지를 클론 코딩한 프로젝트입니다. 메인 화면에 비디오를 배경으로 적용하여 브랜드 특유의 몰입감을 구현하였으며, 하단 푸터 영역까지 원본과 동일하게 반응형 사이트로 재현하여 전체 페이지 구조를 완성했습니다.",
     github: "https://github.com/jeongeunkill/TAMBURINS.git",
-    notion: "https://www.notion.so/2780224363c0805abd7df973b199b58a",
+    notion: "https://www.notion.so/TAMBERINS-27d0224363c08090afc9f76fd8563fb9",
   },
   {
     thumb: w06,
@@ -88,7 +88,7 @@ const slides = [
     desc:
       "서울역사편찬원 공식 메인 페이지를 클론 코딩한 프로젝트입니다. 메인 배너 영역에 Swiper.js를 활용한 슬라이드 기능을 구현하여 시각적인 역동성을 높였으며, 네비게이션 바를 상단 고정 형태로 제작하여 사용자가 어떤 위치에서도 메뉴에 쉽게 접근할 수 있도록 구성했습니다. 또한, 버튼 클릭 시 페이지 최상단으로 부드럽게 이동하는 기능과 PC·태블릿·모바일 해상도에 대응하는 반응형 디자인을 적용해 원본과 유사한 사용자 경험을 제공했습니다.",
     github: "https://github.com/jeongeunkill/Seoul-Historiography.git",
-    notion: "https://www.notion.so/2780224363c0805abd7df973b199b58a",
+    notion: "https://www.notion.so/27d0224363c08003be51c74580e42896",
   },
   {
     thumb: w07,
@@ -99,7 +99,7 @@ const slides = [
     desc:
       "HTML, CSS, JavaScript를 사용하여 스타벅스 코리아 메인 페이지를 클론 코딩한 프로젝트입니다. 메인 화면 배너와 메뉴, 프로모션 섹션 등 주요 콘텐츠를 반응형으로 구현하고, 마우스 오버, 슬라이더, 드롭다운 메뉴 등 원본의 인터랙티브 기능을 JavaScript로 재현했습니다. 하단 푸터까지 포함하여 전체 페이지 구조를 원본과 동일하게 구성하고, 데스크탑과 모바일 환경 모두에서 자연스러운 사용자 경험을 제공합니다.",
     github: "https://github.com/jeongeunkill/starbucks.git",
-    notion: "https://www.notion.so/2780224363c0805abd7df973b199b58a",
+    notion: "https://www.notion.so/STARBUCKS-27d0224363c0807380a6f6b371835b57",
   },
   {
     thumb: w08,
@@ -110,7 +110,7 @@ const slides = [
     desc:
       "디자인호텔스(Design Hotels) 공식 메인 페이지를 HTML, CSS, JavaScript로 클론 코딩한 프로젝트입니다. 마우스 오버, 슬라이더, 드롭다운 메뉴 등 원본의 인터랙티브 기능을 JavaScript로 재현했습니다. 하단 푸터까지 포함하여 전체 페이지 구조를 원본과 동일하게 구성하고, 데스크탑과 모바일 환경 모두에서 자연스러운 사용자 경험을 제공합니다.",
     github: "https://github.com/jeongeunkill/Design-Hotels.git",
-    notion: "https://www.notion.so/2780224363c0805abd7df973b199b58a",
+    notion: "https://www.notion.so/Design-Hotels-27d0224363c080d2bd1bfe5925fbc6ce",
   },
   {
     thumb: w09,

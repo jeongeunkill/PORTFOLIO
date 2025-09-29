@@ -315,16 +315,6 @@
   }
 }
 
-.graphic .graphic-title {
-  /* 최대값(마지막 인자) 크게, vw도 키움 */
-  /* font-size: clamp(40px, 6vw, 110px);
-  line-height: 1.05; */
-}
-
-/* 데스크톱에서 더 크게 보이고 싶으면 선택(추가 가능) */
-/* @media (min-width: 1200px) {
-  .graphic .graphic-title { font-size: 50px; }
-} */
 
 /* 태블릿/모바일에서 너무 커지지 않게 캡 */
 @media (max-width: 900px) {
