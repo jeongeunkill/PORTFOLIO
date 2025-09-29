@@ -1,4 +1,17 @@
 *{margin:0; padding: 0; box-sizing: border-box;}
+
+html {
+  -webkit-text-size-adjust: 100%; /* iOS 자동 확대 방지 */
+  text-size-adjust: 100%;
+}
+body {
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI",
+               Roboto, "Helvetica Neue", Arial, "Apple SD Gothic Neo",
+               "Noto Sans KR", "Malgun Gothic", sans-serif;
+  -webkit-font-smoothing: antialiased; /* iOS */
+  -moz-osx-font-smoothing: grayscale;  /* macOS */
+  font-synthesis: none;                /* 볼드/이탤릭 합성 금지 → 가짜 두께 방지 */
+}
 #root {
   position: relative;
   max-width: 1920px;
@@ -146,3 +159,8 @@
 
 .card { padding: 2em; }
 .read-the-docs { color: #888; }
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-weight: inherit;
+}
