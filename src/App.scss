@@ -11,13 +11,13 @@
 
 /* 기존 스타일은 그대로 두고 overlay만 추가 */
 .app {
-   .bg-video {
+  .bg-video {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;        // 누님 값 유지
-    z-index: -9999;     // ✅ 페이지 최하단 레이어
+    z-index: -9999;      // ✅ 페이지 최하단 레이어
     pointer-events: none;
 
     video,
@@ -29,15 +29,15 @@
     }
   }
 
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.3);
-  z-index: -1;
-}
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: -1;
+  }
 }
 
 .visual-pc { display: block; }
@@ -55,8 +55,8 @@
   transform: translate(-50%,-50%);
   border-radius: 10px; */
  /*  overflow: hidden; */
- max-width:80%;
- margin: 0 auto;
+  max-width:80%;
+  margin: 0 auto;
   padding: 30px;
   display: flex;
   align-items: center;
@@ -72,7 +72,7 @@
 @media (max-width: 768px) { // 모바일 가로
   .content-box {
     max-width: 95vw;
-    height: 90vh;   // 세로도 꽉 차도록
+    height: 90vh;   // 기존 유지 (모바일 가로는 기존 구조 OK)
     border-radius: 8px;
   }
 }
@@ -80,13 +80,44 @@
 @media (max-width: 500px) { // 모바일 세로
   .content-box {
     max-width: 100vw;
-    height: 90vh;   // 세로도 꽉 차도록
+    height: 90vh;   // 기존 유지 (여기선 아래 480 규칙이 우선됨)
     border-radius: 6px;
   }
   .name-label{display: none;}
   .portfolio-label{display: none;}
   .visual-pc { display: none; }
   .visual-mobile { display: block; }
+}
+
+/* ====== 📱 480px 이하: content-box 제거 & 네비 제거 레이아웃 ====== */
+@media (max-width: 480px) {
+  html, body {
+    height: auto;
+    overflow-y: auto;         // 세로 스크롤 허용
+  }
+  #root {
+    height: auto;             // 100vh 고정 해제
+    min-height: 100vh;
+    padding: 16px;            // 모바일 여백 (원하면 30px 유지 가능)
+  }
+
+  /* 데스크탑용 래퍼/네비 숨김 */
+  .content-box { display: none; }     // ✅ 요청: 모바일에서 content-box 제거
+  header, .header, .gnb, nav {        // ✅ 일반적인 네비/헤더 클래스도 커버
+    display: none !important;
+  }
+
+  /* 모바일 전용 컨테이너 */
+  .mobile-page {
+    position: relative;
+    z-index: 2;               // 비디오 위
+    width: 100%;
+    max-width: 100%;
+    padding: 20px 12px;       // 모바일 여백
+    display: block;
+  }
+
+  
 }
 
 .logo {

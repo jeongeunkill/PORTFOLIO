@@ -327,17 +327,28 @@
   .graphic {
     overflow-x: hidden;               /* 혹시 모를 가로 스크롤 차단 */
   }
+  .graphic-viewport {
+    height: var(--home-visual-height, 629px);
+  padding-top: clamp(50px, 2vh, 24px);
+}
   .graphic-board {
-    width: 94vw;                      /* 고정 최소폭 제거 */
+    width: 85vw;                      /* 고정 최소폭 제거 */
     margin-inline: auto;              /* 가운데 정렬 */
-    gap: 23px;                        /* 여백 축소 */
+    gap: 23px;        
+    background: rgba(255,255,255,0.7);    
+    border-radius: 5px;
+    padding: clamp(18px, 2vw, 34px);            /* 여백 축소 */
   }
+  .graphic-title {
+  margin-bottom: clamp(20px, 2.8vh, 40px);
+}
 
   /* 왼쪽 패널도 같이 더 줄이기 */
   .g-left {
-    column-gap: 0px;
+    column-gap: 7px;
     row-gap: 8px;
     padding-bottom: 18px;
+    padding: 18px 20px;
   }
   .g-left__works {
   display: flex;
@@ -346,8 +357,8 @@
   gap: 8px;
 }
   .g-left__title {
-    font-size: clamp(18px, 4.8vw, 24px);
-    margin: 0;
+    font-size: clamp(18px, 3.8vw, 24px);
+    margin: 10px 0 0 0;
   }
   .g-meter {
     width: clamp(120px, 52%, 160px);

@@ -123,8 +123,8 @@ html, body, #root {
 .web-tag {
   padding: 6px 12px;
   font-size: 17px;
-  font-size: 700;
-  border-radius: 999px;
+  font-weight: 600; /* ← 기존 font-size: 700; 오타를 교체 */
+  border-radius: 20px;
   background: #fff;
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
   white-space: nowrap;
@@ -222,27 +222,39 @@ html, body, #root {
 }
 @media (max-width: 480px) {
   .web-title {
-  font-size: clamp(36px, 3.2vw, 60px);
-}
-  .web-viewport { height: var(--home-visual-height, 800px); }
+    font-size: clamp(36px, 3.2vw, 60px);
+  }
+  .web-viewport { height: var(--home-visual-height, 700px); }
   .web-swiper { height: calc(800% - clamp(74px, 10vh, 100px)); }
   .web-card {
-    max-width: 50%;
+    max-width: 100%;
+    padding-left: 20px;
     margin: 0 auto;
     grid-template-columns: 1fr; /* 세로 스택 */
+    border-radius: 5px;
+    gap: 1px;
   }
   .web-card__left {
-     aspect-ratio: 16/9; 
-     max-width: 80%;
-    }
+    max-width: 100%;
+  }
+  .web-thumb {                      /* ← 추가 */
+    border-radius: 5px;             /* 작은 화면에서는 더 단순하게 */
+    object-fit: contain;            /* 필요하면 contain으로 변경 */
+    height: auto;                   /* 자동 높이 */
+    max-height: 240px;              /* 원하는 최대 높이 */
+  }
+  .web-title {
+    margin-top: clamp(20px, 5vh, 60px); 
+  }
   .web-desc { 
-    -webkit-line-clamp: 4; 
-    max-width: 52ch;
+    -webkit-line-clamp: 10; 
+    max-width: 42ch;
   }
   .web-links img {
-  width: 28px;
-  height: 28px;
-  display: block;
-  transition: transform .2s ease, filter .2s ease;
-}
+    width: 28px;
+    height: 28px;
+  }
+  .web-tags .web-tag {              /* ← 아까 말씀드린 것 */
+    font-size: 13px !important;
+  }
 }

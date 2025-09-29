@@ -1,0 +1,18 @@
+/* src/components/AllSections/AllSections.scss */
+.all-sections {
+  width: 100%;
+  display: block;
+}
+
+.all-section {
+  width: 100%;
+  /* PC 섹션이 100vh 기준일 수 있으니, 모바일에선 자동 높이 */
+  min-height: auto;
+  padding: 24px 16px;
+
+  /* 섹션 간 간격 */
+  & + .all-section {
+    margin-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+  }
+}
