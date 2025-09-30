@@ -328,7 +328,7 @@
     overflow-x: hidden;               /* 혹시 모를 가로 스크롤 차단 */
   }
   .graphic-viewport {
-    height: var(--home-visual-height, 600px);
+    height: var(--home-visual-height, 550px);
   padding-top: clamp(50px, 2vh, 24px);
 }
   .graphic-board {
@@ -346,10 +346,10 @@
 
   /* 왼쪽 패널도 같이 더 줄이기 */
   .g-left {
-    column-gap: 7px;
-    row-gap: 8px;
+    column-gap: 18px;
+    row-gap: 7px;
     padding-bottom: 18px;
-    padding: 18px 20px;
+    padding: 10px 15px;
   }
   .g-left__works {
   display: flex;
@@ -362,11 +362,11 @@
     margin: 10px 0 0 0;
   }
   .g-meter {
-    width: clamp(100px, 52%, 160px);
+    width: clamp(90px, 52%, 160px);
     padding: 6px 8px;
   }
-  .g-meter__dots li { width: 12px; height: 12px; }
-  .g-meter__caption { font-size: 12px; }
+  .g-meter__dots li { width: 10px; height: 10px; }
+  .g-meter__caption { font-size: 10px; }
   .g-left__label { font-size: 16px; letter-spacing: 1px; }
   .g-left__label.-program {
   font-size: clamp(16px, 2.6vw, 22px);  /* 너무 크지 않게 */
@@ -378,10 +378,13 @@
   margin-top: 12px;
   text-align: center;
 }
+.g-left__icons {
+    gap: 5px !important;   // ← 여기!
+  }
   .g-left__icons img {
-    width: clamp(18px, 10vw, 28px);
-    height: clamp(18px, 10vw, 28px);
-    gap: 2;
+    width: clamp(15px, 10vw, 28px);
+    height: clamp(15px, 10vw, 28px);
+    
   }
   .g-left__workname {
   width: clamp(90px, 60%, 180px); /* 반응형 줄이기 */
