@@ -224,14 +224,14 @@ html, body, #root {
   .web-title {
     font-size: clamp(26px, 3.2vw, 60px);
   }
-  .web-viewport { height: var(--home-visual-height, 650px); }
+  .web-viewport { height: var(--home-visual-height, 670px); }
   .web-swiper { height: calc(800% - clamp(74px, 10vh, 100px)); }
   .web-card {
     max-width: 100%;
     padding-left: 20px;
     margin: 0 auto;
     grid-template-columns: 1fr; /* 세로 스택 */
-    border-radius: 5px;
+    border-radius: 10px;
     gap: 1px;
   }
   .web-card__left {

@@ -67,23 +67,43 @@ function App() {
 
   // 📱 모바일: Web 섹션 보이면 bg2로, 벗어나면 bg1로
   useEffect(() => {
-    if (!isMobile) return;
-    const target = document.getElementById("web");
-    if (!target) return;
+  if (!isMobile) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setMobileVideo(bgVideo2);
-          else setMobileVideo(bgVideo1);
-        });
-      },
-      { threshold: 0.3 } // 30% 이상 보이면 반응
-    );
+  const webEl = document.getElementById("web");
+  const graphicEl = document.getElementById("graphic");
+  if (!webEl || !graphicEl) return;
 
-    observer.observe(target);
-    return () => observer.disconnect();
-  }, [isMobile]);
+  let webVisible = false;
+  let graphicVisible = false;
+
+  const updateBg = () => {
+    // 둘 중 하나라도 보이면 bg2 유지
+    setMobileVideo(webVisible || graphicVisible ? bgVideo2 : bgVideo1);
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.target === webEl) webVisible = entry.isIntersecting;
+        if (entry.target === graphicEl) graphicVisible = entry.isIntersecting;
+      }
+      updateBg();
+    },
+    {
+      threshold: 0.25,        // 25% 이상 보이면 "보이는 중"으로 판단
+      root: null,
+      rootMargin: "0px 0px -10% 0px", // 살짝 여유 (하단 근접 시 놓침 방지)
+    }
+  );
+
+  observer.observe(webEl);
+  observer.observe(graphicEl);
+
+  // 초기 상태 반영
+  updateBg();
+
+  return () => observer.disconnect();
+}, [isMobile]);
 
   return (
     <div className="app">

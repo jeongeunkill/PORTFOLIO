@@ -33,7 +33,7 @@ import s23 from "../../img/graphic/23.png";
 import s24 from "../../img/graphic/24.png";
 import s25 from "../../img/graphic/25.png";
 
-// 작품명(왼쪽) 10장 (n01~n10까지만 존재)
+// 작품명(왼쪽) 10장
 import n01 from "../../img/graphic/평일.png";
 import n02 from "../../img/graphic/watcher.png";
 import n03 from "../../img/graphic/더박스.png";
@@ -51,7 +51,7 @@ import icAi from "../../img/graphic/ai.png";
 import icSk from "../../img/graphic/sk.png";
 import icEn from "../../img/graphic/en.png";
 
-// ✅ slides 배열 하나만 유지
+// ✅ slides 배열
 const slides = [
   { section: "포스터", contribution: "100%", programs: [icPs, icAi], nameImgs: [n09, n10], right: s01 },
   { section: "포스터", contribution: "100%", programs: [icPs, icAi], nameImgs: [n07, n06], right: s02 },
@@ -84,15 +84,16 @@ export default function Graphic() {
   const [active, setActive] = useState(0);
   const current = useMemo(() => slides[active] ?? slides[0], [active]);
 
-  // ✅ 기여도(%) → 5개 도트(각 20%)로 변환: 90%면 4개 + 0.5개 채움
+  // ✅ 제목 안전 정의
+  const title = String(current?.section ?? "");
+  const isLong = title.length >= 5;
+
+  // ✅ 기여도 도트 계산
   const pct = parseInt(String(current.contribution).replace("%", ""), 10) || 0;
   const dots = 5;
-  const perDot = 100 / dots;                        // 20%
-  const fullDots = Math.floor(pct / perDot);        // 꽉 찬 도트 개수
-  const partialRatio = Math.max(
-    0,
-    Math.min(1, (pct - fullDots * perDot) / perDot) // 남은 비율(0~1)
-  );
+  const perDot = 100 / dots;
+  const fullDots = Math.floor(pct / perDot);
+  const partialRatio = Math.max(0, Math.min(1, (pct - fullDots * perDot) / perDot));
 
   return (
     <section className="graphic">
@@ -103,29 +104,20 @@ export default function Graphic() {
           {/* LEFT */}
           <aside className="g-left">
             {/* 섹션 제목 */}
-            <h3 className="g-left__title">{current.section}</h3>
+            <h3 className={`g-left__title ${isLong ? "long" : ""}`}>{title}</h3>
 
-            {/* ✅ 기여도 박스 (도트에 부분 채움 반영) */}
+            {/* ✅ 기여도 박스 */}
             <div className="g-meter">
               <ul className="g-meter__dots">
                 {Array.from({ length: dots }).map((_, i) => {
-                  // 각 도트의 배경 스타일 계산
                   let bg = "transparent";
                   if (i < fullDots) {
-                    bg = "#274067"; // 꽉 참
+                    bg = "#274067";
                   } else if (i === fullDots && partialRatio > 0) {
-                    // 부분 채움(왼→오 방향으로 채움)
                     const p = Math.round(partialRatio * 100);
                     bg = `linear-gradient(90deg, #274067 ${p}%, transparent 0)`;
                   }
-                  return (
-                    <li
-                      key={i}
-                      // 기존 li 스타일(원형, 보더 등)은 그대로 적용되고,
-                      // 배경만 여기서 동적으로 지정합니다.
-                      style={{ background: bg }}
-                    />
-                  );
+                  return <li key={i} style={{ background: bg }} />;
                 })}
               </ul>
               <span className="g-meter__caption">기여도 : {current.contribution}</span>
@@ -133,11 +125,7 @@ export default function Graphic() {
 
             {/* PROGRAM */}
             <p className="g-left__label -program">PROGRAM</p>
-            <div
-              className={`g-left__icons ${
-                current.stackPrograms ? "column" : ""
-              }`}
-            >
+            <div className={`g-left__icons ${current.stackPrograms ? "column" : ""}`}>
               {current.programs.map((src, i) => (
                 <img key={i} src={src} alt="program" />
               ))}
@@ -174,9 +162,9 @@ export default function Graphic() {
               breakpoints={{
                 1440: { slidesPerView: 1.35, spaceBetween: 18, coverflowEffect: { depth: 220 } },
                 1200: { slidesPerView: 1.28, spaceBetween: 16, coverflowEffect: { depth: 200 } },
-                900:  { slidesPerView: 1.22, spaceBetween: 14, coverflowEffect: { depth: 180 } },
-                600:  { slidesPerView: 1.18, spaceBetween: 12, coverflowEffect: { depth: 160 } },
-                0:    { slidesPerView: 1.14, spaceBetween: 10, coverflowEffect: { depth: 140 } },
+                900: { slidesPerView: 1.22, spaceBetween: 14, coverflowEffect: { depth: 180 } },
+                600: { slidesPerView: 1.18, spaceBetween: 12, coverflowEffect: { depth: 160 } },
+                0: { slidesPerView: 1.14, spaceBetween: 10, coverflowEffect: { depth: 140 } },
               }}
             >
               {slides.map((s, idx) => (

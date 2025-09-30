@@ -360,13 +360,20 @@
 }
   .g-left__title {
     font-size: 17px;
-    margin: 10px 0 0 0;
+    margin: 12.5px 0 0 0;
+     &.long {
+    font-size: 15px;   // 5글자 이상일 때 자동으로 줄어듦
+  }
   }
   .g-meter {
     width: clamp(90px, 52%, 160px);
     padding: 6px 8px;
   }
-  .g-meter__dots li { width: 10px; height: 10px; }
+
+.g-meter__dots {
+  margin: 1px 0 5px;
+}
+  .g-meter__dots li { width: 9px; height: 9px; }
   .g-meter__caption { font-size: 10px; }
   .g-left__label { font-size: 16px; letter-spacing: 1px; }
   .g-left__label.-program {
