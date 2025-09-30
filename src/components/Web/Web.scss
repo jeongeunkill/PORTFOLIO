@@ -222,9 +222,9 @@ html, body, #root {
 }
 @media (max-width: 480px) {
   .web-title {
-    font-size: clamp(36px, 3.2vw, 60px);
+    font-size: clamp(26px, 3.2vw, 60px);
   }
-  .web-viewport { height: var(--home-visual-height, 700px); }
+  .web-viewport { height: var(--home-visual-height, 600px); }
   .web-swiper { height: calc(800% - clamp(74px, 10vh, 100px)); }
   .web-card {
     max-width: 100%;
