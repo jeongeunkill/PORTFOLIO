@@ -129,7 +129,7 @@ export default function Web() {
   return (
     <section className="web">
       <div className="web-viewport">
-        <h2 className="web-title">POTOPOLIO WEB</h2>
+        <h2 className="web-title">PORTFOLIO WEB</h2>
 
         <Swiper
           className="web-swiper"
